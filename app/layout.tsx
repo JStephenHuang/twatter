@@ -1,5 +1,6 @@
 import "./globals.css";
 
+import { FirebaseProvider } from "./context/FirebaseContext";
 import type { Metadata } from "next";
 import Navbar from "./components/Navbar";
 
@@ -14,13 +15,15 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
-      <body>
-        <main>
-          <Navbar />
-          <div className="px-32">{children}</div>
-        </main>
-      </body>
+    <html suppressHydrationWarning lang="en">
+      <FirebaseProvider>
+        <body>
+          <main className="h-screen">
+            <Navbar />
+            <div className="h-[94%] px-32">{children}</div>
+          </main>
+        </body>
+      </FirebaseProvider>
     </html>
   );
 }
