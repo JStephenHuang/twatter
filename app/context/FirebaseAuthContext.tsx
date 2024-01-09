@@ -19,27 +19,27 @@ const signOut = () => {
   getAuth(clientApp).signOut();
 };
 
-export const FirebaseContext = createContext<{
+export const FirebaseAuthContext = createContext<{
   auth: Auth;
   user: User | null;
-  isUserLoading: boolean;
+  isLoading: boolean;
   signInWithGoogle: () => void;
   signOut: () => void;
 }>({
   auth: getAuth(clientApp),
   user: null,
-  isUserLoading: true,
+  isLoading: true,
   signInWithGoogle,
   signOut,
 });
 
-const useFirebaseContext = () => useContext(FirebaseContext);
+const useFirebaseAuthContext = () => useContext(FirebaseAuthContext);
 
 const FirebaseProvider = ({ children }: { children: React.ReactNode }) => {
   const auth = getAuth(clientApp);
 
   const [user, setUser] = useState<User | null>(null);
-  const [isUserLoading, setIsUserLoading] = useState<boolean>(true);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
 
   useEffect(() => {
     return auth.onAuthStateChanged(async (user) => {
@@ -52,18 +52,18 @@ const FirebaseProvider = ({ children }: { children: React.ReactNode }) => {
       } catch (error) {
         console.log(error);
       } finally {
-        setIsUserLoading(false);
+        setIsLoading(false);
       }
     });
   }, []);
 
   return (
-    <FirebaseContext.Provider
-      value={{ auth, user, isUserLoading, signInWithGoogle, signOut }}
+    <FirebaseAuthContext.Provider
+      value={{ auth, user, isLoading, signInWithGoogle, signOut }}
     >
       {children}
-    </FirebaseContext.Provider>
+    </FirebaseAuthContext.Provider>
   );
 };
 
-export { useFirebaseContext, FirebaseProvider };
+export { useFirebaseAuthContext, FirebaseProvider };

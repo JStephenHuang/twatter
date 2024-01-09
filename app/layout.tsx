@@ -1,6 +1,6 @@
 import "./globals.css";
 
-import { FirebaseProvider } from "./context/FirebaseContext";
+import { FirebaseProvider } from "./context/FirebaseAuthContext";
 import type { Metadata } from "next";
 import Navbar from "./components/Navbar";
 

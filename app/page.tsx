@@ -2,13 +2,13 @@
 
 import { redirect } from "next/navigation";
 import { useEffect } from "react";
-import { useFirebaseContext } from "./context/FirebaseContext";
+import { useFirebaseAuthContext } from "./context/FirebaseAuthContext";
 
 export default function Home() {
-  const { isUserLoading, user } = useFirebaseContext();
+  const { isLoading, user } = useFirebaseAuthContext();
 
   useEffect(() => {
-    if (!isUserLoading) {
+    if (!isLoading) {
       // You know that the user is loaded: either logged in or out!
 
       if (user === null) {
@@ -16,9 +16,9 @@ export default function Home() {
       }
     }
     // You also have your firebase app initialized
-  }, [isUserLoading, user]);
+  }, [isLoading, user]);
 
-  if (isUserLoading) {
+  if (isLoading) {
     return <div>Loading</div>;
   }
   return (

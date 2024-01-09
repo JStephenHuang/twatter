@@ -1,11 +1,11 @@
 "use client";
 
-import { useFirebaseContext } from "../context/FirebaseContext";
+import { useFirebaseAuthContext } from "../context/FirebaseAuthContext";
 
 const SignOutBtn = () => {
-  const { isUserLoading, user, signOut } = useFirebaseContext();
+  const { isLoading, user, signOut } = useFirebaseAuthContext();
 
-  if (isUserLoading) return <div>Loading</div>;
+  if (isLoading) return <div>Loading</div>;
 
   if (user) {
     return (
