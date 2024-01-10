@@ -1,11 +1,9 @@
-"use client";
-
 import Link from "next/link";
 import SignOutBtn from "./SignOutBtn";
 
 const NavLinks = ({ label, link }: { label: string; link: string }) => {
   return (
-    <li className="mx-6 border">
+    <li className="mx-6">
       <Link href={link}>{label}</Link>
     </li>
   );
@@ -17,7 +15,6 @@ const Navbar = () => {
       <ul className="flex">
         <NavLinks label="Home" link="/" />
         <NavLinks label="Twats" link="/twats" />
-        <NavLinks label="Login" link="/login" />
       </ul>
       <SignOutBtn />
     </nav>

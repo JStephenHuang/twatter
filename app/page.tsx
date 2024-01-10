@@ -23,7 +23,7 @@ export default function Home() {
   }
   return (
     <div className="h-full flex flex-col items-center justify-center">
-      <h1 className="font-bold text-[5rem] text-center">
+      <h1 className="font-bold text-[2rem] text-center">
         Welcome to Twatter where people twat.
       </h1>
     </div>
